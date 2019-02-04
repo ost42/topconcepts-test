@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="assets/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/os.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar sticky-top navbar-dark bg-dark">
+		<div class="container float-right">
+			<span class="navbar-brand mb-0 h1">Testaufgabe</span>
+			<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+				<button id="btn_nutzer" type="button" class="btn btn-primary">Nutzeransicht</button>
+				<button id="btn_admin" type="button" class="btn btn-secondary">Admin</button>
+			</div>
+		</div>
+	</nav>
+	<!-- nutzeransicht -->
+	<section id="nutzeransicht">
+		<div class="row bg-light os_head">
+			<div class="container">
+				<h1 class="display-4">News</h1>
+				<p class="lead">
+					Illusions created by the corporate elite to suppress knowledge to the general public.</p>
+			</div>
+		</div>
+		<div id="news_wrapper_nutzer"></div>
+	</section>
+	<!-- admin -->
+	<section id="admin" style="display:none">
+		<div class="row bg-light os_head">
+			<div class="container">
+				<h1 class="display-4 float-left">Admin</h1>
+				<div class="btn-group-vertical btn-group-sm float-right" role="adm_main" aria-label="">
+					<p></p>
+					<button type="button" id="add_modal" data-toggle="modal" data-target="#new_modal" class="float-right btn btn-light btn-sm"><i class="fas fa-plus"></i>&nbsp;&nbsp;News erstellen</button>
+					<button type="button" class="float-right btn btn-light btn-sm" data-toggle="collapse" data-target=".pcollapse" aria-expanded="false" aria-controls="pcollapse"><i class="fas fa-bars"></i> Newstexte zeigen/verbergen</button>
+				</div>
+			</div>
+		</div>
+		<div id="news_wrapper_admin"></div>
+	</section>
+	<!--  -->
+	<footer class="bg-light os_foot">
+		<div class="container">
+			<address>
+				<strong>Impressum</strong><br>
+				Oliver Steinhoff, Dreihausen 21, 21266 Jesteburg<br />
+				E-Mail: <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#111;&#108;&#105;&#118;&#101;&#114;&#046;&#115;&#116;&#101;&#105;&#110;&#104;&#111;&#102;&#102;&#064;&#103;&#109;&#120;&#046;&#110;&#101;&#116;">&#111;&#108;&#105;&#118;&#101;&#114;&#046;&#115;&#116;&#101;&#105;&#110;&#104;&#111;&#102;&#102;&#064;&#103;&#109;&#120;&#046;&#110;&#101;&#116;</a>,
+				Telefon: &#048;&#049;&#055;&#050;&#032;&#056;&#057;&#056;&#052;&#056;&#055;&#050;
+			</address>
+		</div>
+	</footer>
+	<!-- der ganze modal irrsinn -->
+	<!-- edit -->
+	<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="edit_modal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-ti">News editieren</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form id="news_edit_form">
+					<div class="modal-body">
+							<div class="form-group">
+								<label for="recipient-name" class="col-form-label">Titel:</label>
+								<input required minlength="3" maxlenght="128" type="text" class="form-control" id="modal-edit_attitle">
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Text:</label>
+								<textarea required minlength="3" class="form-control" id="modal-edit_atext" style="min-height:300px"></textarea>
+							</div>
+							<label for="inputGroupSelect01" class="col-form-label">Kategorie:</label>
+							<select class="custom-select" id="modal-edit_kat">
+							</select>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+						<button type="submit" data-aid="0" id="news_edit_button" class="btn btn-success">Speichern</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- new -->
+	<div class="modal fade" id="new_modal" tabindex="-1" role="dialog" aria-labelledby="new_modal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-ti">News erstellen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form id="news_add_form">
+					<div class="modal-body">
+							<div class="form-group">
+								<label for="recipient-name" class="col-form-label">Titel:</label>
+								<input required minlength="3" maxlenght="128" type="text" class="form-control" id="modal-add_attitle">
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Text:</label>
+								<textarea required minlength="3" class="form-control" id="modal-add_atext" style="min-height:300px"></textarea>
+							</div>
+							<label for="inputGroupSelect01" class="col-form-label">Kategorie:</label>
+							<select class="custom-select" id="modal-add_kat">
+							</select>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+						<button type="submit" data-aid="0" id="news_add_button" class="btn btn-success">Speichern</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- del-->
+	<div class="modal fade" id="del_modal" tabindex="-1" role="dialog" aria-labelledby="del_modal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">News löschen</h5>
+				</div>
+				<div class="modal-body">
+					Möchten Sie den Artikel <span class="modal-atitle"></span> unwiederruflich löschen?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+					<button type="button" data-aid="0" id="news_del_button" class="btn btn-danger">Löschen</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  -->
+	<script src="assets/jquery-3.3.1.min.js"></script>
+	<script src="assets/bootstrap.min.js"></script>
+	<script src="assets/os.js"></script>
+</body>
+</html>
